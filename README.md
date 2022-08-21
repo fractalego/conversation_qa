@@ -18,6 +18,5 @@ dialogue.add_dialogue_pair("Where was the cat?", "The fence.")
 
 text = "A white cat is on the fence."
 query = "What color is it?"
-expected = "white"
 qa.get_answer(text, dialogue.get_text(), query)
 ```
