@@ -3,7 +3,7 @@ This framework is trained on the [CoQA dataset](https://stanfordnlp.github.io/co
 
 
 # Install
-pip install conversation_qa
+pip install conversation-qa
 
 
 # Example 
