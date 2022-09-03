@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="conversation-qa",
-    version="0.0.2",
+    version="0.0.3",
     url="http://github.com/fractalego/conversation_qa",
     author="Alberto Cetoli",
     author_email="alberto@fractalego.io",
