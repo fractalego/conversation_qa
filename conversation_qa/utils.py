@@ -3,18 +3,19 @@ import torch
 _device = "cuda" if torch.cuda.is_available() else "cpu"
 
 
-def get_answer_prompt(story, dialogue, query):
-    return f"""
-In the text below two people are discussing a story.
+def get_answer_prompt(text, query, dialogue=None):
+    text = text.strip()
+    query = query.strip()
 
-Story:
-{story}
+    prompt = "In the text below two people are discussing a story.\n\n"
+    prompt += "Story:\n" + text + "\n\n"
+    prompt += "Discussion:\n"
+    if dialogue:
+        dialogue = dialogue.strip()
+        prompt += dialogue + "\n"
+    prompt += "Q: " + query + "\n"
+    return prompt
 
-Discussion:
-{dialogue}
-Q: {query}
-A: 
-""".strip()
 
 
 def generate_answer(model, tokenizer, prompt, length=5):

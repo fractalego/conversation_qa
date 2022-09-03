@@ -12,7 +12,7 @@ class QA:
         self._tokenizer = GPT2Tokenizer.from_pretrained(model_name)
 
     def get_answer(self, text: str, dialogue: str, query: str) -> str:
-        prompt = get_answer_prompt(text, dialogue, query)
+        prompt = get_answer_prompt(text, query, dialogue)
         return generate_answer(self._model, self._tokenizer, prompt)
 
 

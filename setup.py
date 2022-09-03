@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 
 setup(
-    name="conversation_qa",
+    name="conversation-qa",
     version="0.0.2",
     url="http://github.com/fractalego/conversation_qa",
     author="Alberto Cetoli",
@@ -14,7 +14,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=[
-        "conversation_qa",
+        "conversation-qa",
     ],
     install_requires=[
         "transformers==4.9.2",

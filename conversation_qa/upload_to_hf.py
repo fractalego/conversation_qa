@@ -13,5 +13,5 @@ _model.load_state_dict(checkpoint["model_state_dict"])
 
 if __name__ == "__main__":
     print("Uploading to HF")
-    # _model.push_to_hub("conversation-qa")
+    _model.push_to_hub("conversation-qa")
     _tokenizer.push_to_hub("conversation-qa")
