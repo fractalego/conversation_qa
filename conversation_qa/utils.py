@@ -17,20 +17,19 @@ def get_answer_prompt(text, query, dialogue=None):
     return prompt
 
 
-
 def generate_answer(model, tokenizer, prompt, length=5):
     model.eval()
     with torch.no_grad():
         tokens = tokenizer.encode(prompt, return_tensors="pt")
         text = prompt
         start = len(prompt)
-        while "\n" not in text[start:]:
+        while all(item not in text[start:] for item in ["\n", "."]):
             output = _inference(model, tokenizer, tokens.to(_device), length)
             decoded = tokenizer.decode(output[0], skip_special_tokens=True)
             text += decoded[len(text) :]
             tokens = output
 
-    end = text.find("\n", start)
+    end = max(text.find("\n", start), text.find(".", start))
     return text[start:end].split(":")[-1].strip()
 
 
