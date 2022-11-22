@@ -9,6 +9,9 @@ class QA:
     def __init__(self, model_name: str):
         self._model = GPT2LMHeadModel.from_pretrained(model_name)
         self._model.to(_device)
+        if torch.cuda.is_available():
+            self._model.half()
+
         self._tokenizer = GPT2Tokenizer.from_pretrained(model_name)
 
     def get_answer(self, text: str, dialogue: str, query: str) -> str:
