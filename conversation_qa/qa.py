@@ -1,6 +1,6 @@
 import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
-from conversation_qa.utils import generate_answer, get_answer_prompt
+from conversation_qa.utils import generate_answer, get_answer_prompt, clean_answer
 
 _device = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -16,7 +16,8 @@ class QA:
 
     def get_answer(self, text: str, dialogue: str, query: str) -> str:
         prompt = get_answer_prompt(text, query, dialogue)
-        return generate_answer(self._model, self._tokenizer, prompt)
+        answer = generate_answer(self._model, self._tokenizer, prompt)
+        return clean_answer(answer, text)
 
 
 class Dialogue:

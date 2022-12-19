@@ -39,3 +39,16 @@ def _inference(model, tokenizer, tokens, length):
         max_length=tokens.shape[1] + length,
         pad_token_id=tokenizer.eos_token_id,
     )
+
+
+def clean_answer(answer, text):
+    start = text.find(answer)
+    if start != -1:
+        end = start + len(answer)
+        if start > 1 and text[start - 1].isalnum():
+            while start > 1 and text[start - 1].isalnum():
+                start -= 1
+
+        return text[start:end]
+
+    return answer
