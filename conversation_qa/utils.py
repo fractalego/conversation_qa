@@ -1,7 +1,7 @@
 import torch
 
 _device = "cuda" if torch.cuda.is_available() else "cpu"
-
+_max_length = 1023
 
 def get_answer_prompt(text, query, dialogue=None):
     text = text.strip()
@@ -36,7 +36,7 @@ def generate_answer(model, tokenizer, prompt, length=5):
 def _inference(model, tokenizer, tokens, length):
     return model.generate(
         tokens.to(_device),
-        max_length=tokens.shape[1] + length,
+        max_length=min(tokens.shape[1] + length, _max_length),
         pad_token_id=tokenizer.eos_token_id,
     )
 
